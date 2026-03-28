@@ -22,7 +22,7 @@ that can keep GPUs on my table, please reach out!
 
 
 ### Connect with me
-- [Mail] (nitinsinghcyan@gmail.com)
+- nitinsinghcyan@gmail.com
 - [GitHub](https://github.com/equalandoppositereaction)
 - [LinkedIn](https://www.linkedin.com/in/eaor/)
 - [Instagram](https://www.instagram.com/equalandoppositereaction/)
