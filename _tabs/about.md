@@ -6,7 +6,7 @@ order: 4
 
 ## Hi!
 
-Hi, I'm **Nitin Singh**. Thanks for stopping by!
+I'm **Nitin Singh**. Thanks for stopping by!
 
 I'm a sophomore at KMC, University of Delhi. I like to learn things on my own 
 and build them.
