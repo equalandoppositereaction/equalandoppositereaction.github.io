@@ -1,39 +1,27 @@
-# Chirpy Starter
+# This is a personal blog made with Chirpy
 
-[![Gem Version](https://img.shields.io/gem/v/jekyll-theme-chirpy)][gem]&nbsp;
-[![GitHub license](https://img.shields.io/github/license/cotes2020/chirpy-starter.svg?color=blue)][mit]
+I'll include how I made this on windows, with jekyll
 
-A minimal, ready-to-use template for creating a blog with the [**Chirpy**][chirpy] Jekyll theme. Get up and running in minutes with all critical files pre-configured.
+## Install Ruby
 
-## Why This Starter Exists
+- Jekyll doesny support the latest versions of Ruby
+- Download Ruby ~> 3.1 (I installed 3.1.7) windows package manager
 
-When installing Chirpy through [RubyGems.org][gem], Jekyll can only read a subset of theme files (`_data`, `_layouts`, `_includes`, `_sass`, `assets`) and limited `_config.yml` options from the gem. As a result, users cannot enjoy the full out-of-the-box experience that Chirpy offers.
+## Install other dependencies 
 
-To unlock all features, the following files must be present in your Jekyll site:
-
-```shell
-.
-├── _config.yml
-├── _plugins
-├── _tabs
-└── index.html
+- After that, in a terminal type
+```bash
+gem install bundler jekyll
 ```
 
-This starter bundles those files from the latest **Chirpy** release along with a [CD][CD] workflow, so you can start writing immediately.
+Now follow the steps on this site: https://chirpy.cotes.page/posts/getting-started/
+You may skip the **Setting up Enviorment** section as we have already done that.
+That method did not work for me because my system cannot run Docker.
 
-## Usage
-
-Check out the [theme's docs](https://github.com/cotes2020/jekyll-theme-chirpy/wiki).
-
-## Contributing
-
-This repository is automatically updated with new releases from the theme repository. If you encounter any issues or want to contribute to its improvement, please visit the [theme repository][chirpy] to provide feedback.
-
-## License
-
-This work is published under [MIT][mit] License.
-
-[gem]: https://rubygems.org/gems/jekyll-theme-chirpy
-[chirpy]: https://github.com/cotes2020/jekyll-theme-chirpy/
-[CD]: https://en.wikipedia.org/wiki/Continuous_deployment
-[mit]: https://github.com/cotes2020/chirpy-starter/blob/master/LICENSE
+P.S.:
+    after cloning the repo in your system run this in the root directory
+    to install the dependencies
+    ```bash
+    bundle install
+    ```
+    
