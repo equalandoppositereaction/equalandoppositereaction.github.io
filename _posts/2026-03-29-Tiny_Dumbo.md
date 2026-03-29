@@ -13,7 +13,10 @@ _Our beloved MASCOT!!!_
 
 
 There was no use of Large Language Models involved during the creation of this project other than code reviews.
-This report was took 4 hours (~12AM to 4AM) to make. **ENJOY!**
+
+This report was took 4 hours (~12AM to 4AM) to make.
+
+**ENJOY!**
 
 ---
 ## Table of Contents
@@ -33,7 +36,10 @@ The architectural choices were simple, whatever was the best technique I had kno
 It ended up being a llama2-ish model. 
 A sentencepiece tokenizer was trained and used for this project as my tokenizer written in python was too slow.
 
+**The diagram does not correctly render on mobile devices**
+
 **Note:** This flowchart was PAINSTAKINGLY made by hand :)
+
 
 ```
 
@@ -116,7 +122,7 @@ A sentencepiece tokenizer was trained and used for this project as my tokenizer 
 
 ```
 
-### Model config
+### Model Config
 The low number of layers probably causes most of the performence issue in the model despite of the simplicity of the task
 the d_model/fcn_dim ratio was choosen 3.5 motivated by the qwen 3.5 models that prove this to be better for smaller models
 against the more conventional 2.66 ratio (and also yields as multiple of 64).
@@ -134,7 +140,7 @@ MODEL_CFG = {
 }
 ```
 
-### Training config
+### Training Config
 The batch size (128+64) was the best option after multiple trys for maximizing the GPU memory utilization (~92%) while being a multiple of 64 for maximizing the core performence.
 
 AdamW was used as the optimizer as I hadn't studied about muon enough. A learning rate scheduler with the following config was used:
@@ -184,24 +190,24 @@ Note that aqua has higher fcn_dim than pink still they achive identical loss, ev
 _Learning rate throughout the runs._
 Note that so far aqua and pink has similar performance and learning rate per step, this will be relevent in the next part
 
-### A cool observation!
+### A Cool Observation!
 
 ![GPU memory utilized by every run](/assets/pictures/tiny_dumbo/tiny_dumbo_gpu.png){: width="800" }
 _GPU memory utilized by every run._
 
 
-Note that the run in Grey had the highest allocation of memory, then Pink and Aqua had the least out of the three. That means the machine could spent more time in computation during Grey's run compared to Aqua as it has to load the data less often. This is supported by the next image!
+Note that the run in Grey had the highest allocation of memory, then Pink and Aqua had the least out of the three. That means the machine could spent more time in computation during Grey's run compared to Aqua as it has to fetch the data from the drive less often. This is also supported in next image!
 
 ![Disk IO during every run](/assets/pictures/tiny_dumbo/tiny_dumbo_disk.png){: width="800" }
 _Disk IO during every run._
 
-Even though the difference is almost neglegible (<3%>) Its had a significant effect on the total training run! Aqua, despite having a larger fcn_dim finished training on all the same parameters significantly faster!
+Even though the difference is almost neglegible (<3%) Its had a significant effect on the total training run! Aqua, despite having a larger fcn_dim finished training on all the same parameters significantly faster!
 
 ## Outcome {#outcome}
 
-The expected outcome was for the model to produce gramatically correct coherent output. However, (maybe because of its small size) the final outputs were not coherent (at all) but somewhat gramatically ok-ish
-Example:
+The expected outcome was for the model to produce gramatically correct coherent output. However, (maybe because of its small size) the final outputs were not coherent (at all) but somewhat gramatically mediocure.
 
+**Example:**
 
 With prompt: "Once upon a"
 ```
@@ -226,7 +232,7 @@ With prompt: "<|beginoftext|> Once upon a time, there lived a little girl named 
 2. <|beginoftext|> Once upon a time, there lived a little girl named Lilly. She saw that. He decided a big smile, "I'm no longer scared, but you have to be friends?" Suddenly, the boat said, "You're welcome, we need to find it! You need to have a good way to go on an adventure." The next morning, the boy said, "You can't play in the park. It can have a lot of fun! The ball is very important to eat it." The little boy smiled, said, "It's!" The boy smiled. The girl said, "Hello so I want to stay here to see you."
 ```
 
-## Failed runs and Major BUGS {#bugs}
+## Failed Runs and Major BUGS {#bugs}
 
 ### I
 The first few runs (on a different dataset) had absolute gibrish as outputs as I had used only 4 layers, 256 d_model and 2.66 as the d_model/fcn_dim ratio so the model size excluding embeddings was about 3-4M! (8-9M including the embeddings). It also had the bug described in section **II**.
@@ -234,7 +240,7 @@ The first few runs (on a different dataset) had absolute gibrish as outputs as I
 ### II
 During the initial run, the tokenizer was trained with the format <|beginoftext|> - one row of data - <|endoftext|> (this was the pink run in the loss charts), during inference, weird unknown characters were displayed that were shown as "??". At first I thought this was due to some bug in the inference code but I could not point it out.
 
-Example outputs:
+**Example outputs:**
 ```
 temp-1 top-k 2
 Once upon a time, there lived a little girl named Lilly. She ⁇  She ⁇  had ⁇  a ⁇  big ⁇  red ⁇  bird ⁇  who ⁇  loved ⁇  to ⁇  play ⁇  with ⁇ . ⁇  One ⁇  day ⁇ , ⁇  she ⁇  went ⁇  outside ⁇  to ⁇  play ⁇  with ⁇  her ⁇  friends ⁇ . ⁇  She ⁇  saw ⁇  a ⁇  big ⁇  dog ⁇  with ⁇  a ⁇  big ⁇  dog ⁇ . ⁇  The ⁇  dog ⁇  wanted ⁇  to ⁇  play ⁇  with ⁇  the ⁇  dog ⁇ . ⁇ 
