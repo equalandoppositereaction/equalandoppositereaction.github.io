@@ -1,4 +1,4 @@
-# This is a personal blog made with Chirpy
+# This my personal blog made with Chirpy
 
 I'll include how I made this on windows, with jekyll
 
