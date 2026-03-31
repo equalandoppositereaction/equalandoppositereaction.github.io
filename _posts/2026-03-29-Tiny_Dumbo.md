@@ -201,7 +201,9 @@ Note that the run in Grey had the highest allocation of memory, then Pink and Aq
 ![Disk IO during every run](/assets/pictures/tiny_dumbo/tiny_dumbo_disk.png){: width="800" }
 _Disk IO during every run._
 
-Even though the difference is almost neglegible (<3%) Its had a significant effect on the total training run! Aqua, despite having a larger fcn_dim finished training on all the same parameters significantly faster!
+We know that disk I/O are extreamly slow, we also know that larger models have more things to compute and hence take more time to train.
+
+Keeping these things in mind we can hypothise that Aqua should take more time to train given its high Disk I/O and larger size. This did not happen and by some devine intervention Aqua completed its training significantly earlier than pink! (you can see in the GPU memory graph that aqua finished before pink) Even on the exact same machine, data, learning rate etc!
 
 ## Outcome {#outcome}
 
